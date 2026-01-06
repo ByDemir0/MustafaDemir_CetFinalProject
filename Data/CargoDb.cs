@@ -16,6 +16,7 @@ public class CargoDb
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "cargos.db3");
         _database = new SQLiteAsyncConnection(dbPath);
         await _database.CreateTableAsync<CargoItem>();
+        
     }
     
     
