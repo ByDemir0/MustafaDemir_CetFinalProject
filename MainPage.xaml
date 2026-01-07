@@ -56,6 +56,17 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Text="+" 
+                    TextColor="White"
+                    FontSize="32"
+                    BackgroundColor="#4F46E5"
+                    CornerRadius="30"
+                    HeightRequest="60"
+                    WidthRequest="60"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="25"
+                    ZIndex="10"/>
         </Grid>
         
 
