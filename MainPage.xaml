@@ -46,7 +46,7 @@
                                        FontSize="15" 
                                        FontAttributes="Bold"
                                        Margin="0,5,0,0"/>
-                                <Label Text="{Binding Tarih, StringFormat='Tahmini Teslim Tarihi: {0}'}" 
+                                <Label Text="{Binding Tarih, StringFormat='Kargonun geldiği tarih: {0}'}" 
                                        TextColor="Grey" 
                                        FontSize="10" 
                                        Margin="0,-2,0,0"/>

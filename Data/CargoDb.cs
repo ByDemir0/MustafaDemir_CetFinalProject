@@ -24,7 +24,7 @@ public class CargoDb
     {
         await InitAsync();
         return await _database.Table<CargoItem>()
-            .OrderByDescending(x => x.ArrivalDate).ToListAsync();
+            .OrderByDescending(x => x.GelisTarihi).ToListAsync();
     }
     
     
