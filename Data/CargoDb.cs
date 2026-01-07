@@ -1,22 +1,44 @@
 using SQLite;
 
+
 namespace Cet301FinalProject.Data;
 
 public class CargoDb
 {
     private SQLiteAsyncConnection _database;
+
     private async Task InitAsync()
     {
         if (_database is not null)
         {
             return;
-            
         }
-        
-        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "cargos.db3");
+
+        // HATA ÇÖZÜMÜ: Yolu dolaylı yoldan bulmak yerine doğrudan sistem klasörünü alıyoruz.
+        var folderPath = FileSystem.AppDataDirectory;
+    
+        // Klasör yoksa oluştur (Garanti altına alıyoruz)
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        var dbPath = Path.Combine(folderPath, "cargos.db3");
+
+
         _database = new SQLiteAsyncConnection(dbPath);
-        await _database.CreateTableAsync<CargoItem>();
-        
+        try
+        {
+            await _database.CreateTableAsync<CargoItem>();
+        }
+        catch (Exception)
+        {   
+            //Database'i projeye entegre ederken karşılaştığım sorunu bu kod diziniyle çözüldü.
+            // EĞER tablo yapısı değiştiyse (örneğin Primary Key eklendiyse) eski veriyle çakışabilir.
+            // Bu durumda tabloyu silip yeniden oluşturuyoruz. 
+            await _database.DropTableAsync<CargoItem>();
+            await _database.CreateTableAsync<CargoItem>();
+        }
     }
     
     

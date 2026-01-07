@@ -18,11 +18,7 @@
                        FontAttributes="Bold"
                        VerticalOptions="Center"/>
                 
-                <ImageButton Grid.Column="1"
-                             Source="user_icon.png" 
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             VerticalOptions="Center"/>
+                
             </Grid>
         </Frame>
         <Grid Grid.Row="1" Padding="20">
@@ -66,7 +62,8 @@
                     HorizontalOptions="End"
                     VerticalOptions="End"
                     Margin="25"
-                    ZIndex="10"/>
+                    ZIndex="10"
+                    Clicked="EkleButonu_Clicked"/>
         </Grid>
         
 

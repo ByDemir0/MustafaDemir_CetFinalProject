@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cet301FinalProject.AddCargoPage"
+             BackgroundColor="#F3F4F6">
+
+    <Frame BackgroundColor="White" 
+           CornerRadius="20" 
+           Margin="20" 
+           VerticalOptions="Center" 
+           Padding="20"
+           HasShadow="True">
+        
+        <VerticalStackLayout Spacing="15">
+            <Label Text="Yeni Kargo Girişi" 
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   TextColor="#4F46E5"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="Ürün Adı" TextColor="Gray" FontSize="12"/>
+            <Entry x:Name="UrunAdiEntry" 
+                   Placeholder="Örn: Kitap, Ayakkabı..." 
+                   TextColor="Black"/>
+
+            <Label Text="Teslim Alacak Öğrenci" TextColor="Gray" FontSize="12"/>
+            <Entry x:Name="OgrenciAdiEntry" 
+                   Placeholder="Örn: Ahmet Yılmaz" 
+                   TextColor="Black"/>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10" Margin="0,20,0,0">
+                <Button Grid.Column="0" 
+                        Text="İptal" 
+                        BackgroundColor="#EF4444" 
+                        TextColor="White"
+                        CornerRadius="10"
+                        Clicked="Iptal_Clicked"/>
+
+                <Button Grid.Column="1" 
+                        Text="Kaydet" 
+                        BackgroundColor="#4F46E5" 
+                        TextColor="White"
+                        CornerRadius="10"
+                        Clicked="Kaydet_Clicked"/>
+            </Grid>
+        </VerticalStackLayout>
+    </Frame>
+
+</ContentPage>

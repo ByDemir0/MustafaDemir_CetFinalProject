@@ -1,35 +1,49 @@
 ﻿using System.Collections.ObjectModel;
 
+
 namespace Cet301FinalProject;
 
 public partial class MainPage : ContentPage
 {
-    //List yerine ObservableCollection kullanma fikrini Ai'dan aldım.
-    public ObservableCollection<KargoModel> Kargolar { get; set; }
+    private readonly Data.CargoDb _cargoDb;
+    public ObservableCollection<Data.CargoItem> Kargolar { get; set; } = new();
 
     public MainPage()
     {
         InitializeComponent();
-        
-        Kargolar = new ObservableCollection<KargoModel>
-        {
-
-            new KargoModel { TakipNo = "1", UrunAdi = "Kulaklık", Durum = "Teslim alınmadı", DurumRenk = "#e72323", YaziRenk = "##ffffff", OgrenciAdi = "Mustafa Demir", Tarih = "7 OCak 2026"  },
-            new KargoModel { TakipNo = "2", UrunAdi = "Ayakkabı", Durum = "Teslim Edildi", DurumRenk = "#DCFCE7", YaziRenk = "#166534", OgrenciAdi = "Ali Yılmaz", Tarih = "6 OCak 2026" }
-        };
-
+        _cargoDb = new Data.CargoDb();
         KargoListesi.ItemsSource = Kargolar;
     }
-}
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        //Database'i projeye entegre ederken karşılaştığım sorunu bu kod diziniyle çözüldü.
+        // UI'ın tamamen yüklenmesi için kısa bir bekleme ekliyoruz.
+        // Bu, veritabanı işlemlerinin UI henüz hazır değilken çalışmasını ve çökmesini engeller.
+        await Task.Delay(100); 
+        await LoadDataAsync();
+    }
 
-public class KargoModel
-{
-    public string TakipNo { get; set; }
-    public string UrunAdi { get; set; }
-    public string Durum { get; set; }
-    public string DurumRenk { get; set; } 
-    public string YaziRenk { get; set; } 
-    public string OgrenciAdi { get; set; }
-    public string Tarih { get; set; }
+    private async Task LoadDataAsync()
+    {
+        try
+        {
+            Kargolar.Clear();
+            var items = await _cargoDb.GetAllAsync();
+            foreach (var item in items)
+            {
+                Kargolar.Add(item);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Hata oluştu: {ex}");
+            await DisplayAlert("Hata", $"Veriler yüklenirken hata oluştu: {ex.Message}", "Tamam");
+        }
+    }
+    private async void EkleButonu_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushModalAsync(new AddCargoPage());
+    }
 }
