@@ -27,18 +27,7 @@ public class CargoDb
 
 
         _database = new SQLiteAsyncConnection(dbPath);
-        try
-        {
-            await _database.CreateTableAsync<CargoItem>();
-        }
-        catch (Exception)
-        {   
-            //Database'i projeye entegre ederken karşılaştığım sorunu bu kod diziniyle çözüldü.
-            // EĞER tablo yapısı değiştiyse (örneğin Primary Key eklendiyse) eski veriyle çakışabilir.
-            // Bu durumda tabloyu silip yeniden oluşturuyoruz. 
-            await _database.DropTableAsync<CargoItem>();
-            await _database.CreateTableAsync<CargoItem>();
-        }
+       
     }
     
     
