@@ -14,8 +14,8 @@ public partial class MainPage : ContentPage
         Kargolar = new ObservableCollection<KargoModel>
         {
 
-            new KargoModel { TakipNo = "1", UrunAdi = "Kulaklık", Durum = "Yolda", DurumRenk = "#DBEAFE", YaziRenk = "#1E40AF", OgrenciAdi = "Mustafa Demir" },
-            new KargoModel { TakipNo = "2", UrunAdi = "Ayakkabı", Durum = "Teslim Edildi", DurumRenk = "#DCFCE7", YaziRenk = "#166534", OgrenciAdi = "Ali Yılmaz" }
+            new KargoModel { TakipNo = "1", UrunAdi = "Kulaklık", Durum = "Yolda", DurumRenk = "#DBEAFE", YaziRenk = "#1E40AF", OgrenciAdi = "Mustafa Demir", Tarih = "9 OCak 2026"  },
+            new KargoModel { TakipNo = "2", UrunAdi = "Ayakkabı", Durum = "Teslim Edildi", DurumRenk = "#DCFCE7", YaziRenk = "#166534", OgrenciAdi = "Ali Yılmaz", Tarih = "7 OCak 2026" }
         };
 
         KargoListesi.ItemsSource = Kargolar;
@@ -30,5 +30,6 @@ public class KargoModel
     public string Durum { get; set; }
     public string DurumRenk { get; set; } 
     public string YaziRenk { get; set; } 
-    public string OgrenciAdi { get; set; } 
+    public string OgrenciAdi { get; set; }
+    public string Tarih { get; set; }
 }
