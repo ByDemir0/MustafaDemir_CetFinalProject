@@ -25,7 +25,37 @@
                              VerticalOptions="Center"/>
             </Grid>
         </Frame>
+        <Grid Grid.Row="1" Padding="20">
+            <CollectionView x:Name="KargoListesi">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,0,0,15" Padding="15" CornerRadius="12" BackgroundColor="White" >
+                            <StackLayout Spacing="5">
+                                
+                                <Grid ColumnDefinitions="*, Auto" >
+                                    <Label Grid.Column="0" Text="{Binding TakipNo}" TextColor="#9CA3AF" FontSize="15" FontAttributes="Bold"/>
+                                    <Frame Grid.Column="1" Padding="8,4" CornerRadius="8" BackgroundColor="{Binding DurumRenk}" >
+                                        <Label Text="{Binding Durum}" TextColor="{Binding YaziRenk}" FontSize="10" FontAttributes="Bold"/>
+                                    </Frame>
+                                </Grid>
+
+                                <Label Text="{Binding UrunAdi}" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
+
+                                <Label Text="{Binding OgrenciAdi, StringFormat='Teslim Alacak: {0}'}" 
+                                       TextColor="Black" 
+                                       FontSize="15" 
+                                       FontAttributes="Bold"
+                                       Margin="0,5,0,0"/>
+                                
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        
 
     </Grid>
+    
 
 </ContentPage>
